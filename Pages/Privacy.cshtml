@@ -1,0 +1,44 @@
+﻿@page
+@model PrivacyModel
+@{
+    ViewData["Title"] = "Listado de clientes ";
+    var db = Database.Open("SmallBakery"); 
+    var selectQueryString = "SELECT * FROM ATENCION_CLIENTE"; 
+}
+<h1>@ViewData["Title"]</h1>
+
+<script type="text/javascript">
+window.setTimeout( function() {
+  window.location.reload();
+}, 30000);
+</script>
+@* SQL necesaria para la Consulta de datos
+SELECT * FROM ATENCION_CLIENTE
+ *@
+<html> 
+<body> 
+<h1>Small Bakery Products</h1> 
+<table> 
+<tr>
+<th>Nombre</th> 
+<th>Apellidos</th> 
+<th>Email</th> 
+<th>Celular</th> 
+<th>Sexo</th> 
+<th>Motivo</th> 
+<th>Fecha</th> 
+</tr>
+@foreach(var row in db.Query(selectQueryString))
+{
+<tr> 
+<td>@row.NOMBRE</td> 
+<td>@row.APELLIDOS</td> 
+<td>@row.EMAIL</td> 
+<td>@row.CELULAR</td> 
+<td>@row.SEXO</td> 
+<td>@row.MOTIVO</td> 
+</tr> 
+}
+</table> 
+</body> 
+</html>
